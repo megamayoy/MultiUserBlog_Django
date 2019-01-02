@@ -12,7 +12,8 @@ def register_user(request):
 
         if registration_form.is_valid():
             registration_form.save()
-            messages.success(request,"you registered successfully")
+            username = registration_form.cleaned_data.get('username')
+            messages.success(request, username + " registered successfully")
             return redirect('blog:blog-home')
     else:
 
