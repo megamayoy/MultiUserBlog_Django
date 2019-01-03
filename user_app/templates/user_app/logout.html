@@ -1,0 +1,9 @@
+{%extends 'blog/base.html' %}
+
+{%block content %}
+
+    <div class="alert alert-success">
+      you are logged-out
+    </div>
+  <a role="button" class="btn btn-danger" href="{% url 'user_app:login'%}"> LogIn again </a>
+{%endblock%}
