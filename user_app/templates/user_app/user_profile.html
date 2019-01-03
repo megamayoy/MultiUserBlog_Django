@@ -4,12 +4,12 @@
 
   <div class="media">
 
-      <img class="rounded-circle" src ="{% user.user_profile.profile_pic %}" >
+      <img class="rounded-circle account-img" src ="{{ user.userprofile.profile_pic.url }}" >
 
       <div class="media-body">
 
             <h2 class="account-heading"> {{ user.username }} </h2>
-            <p class="text-secondary"> user.email </p>
+            <p class="text-secondary"> {{user.email}} </p>
 
       </div>
 
