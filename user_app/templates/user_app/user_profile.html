@@ -8,8 +8,9 @@
 
       <div class="media-body">
 
-            <h2 class="account-heading"> {{ user.username }} </h2>
+            <h2 class="account-heading"> {{ user.username  | title }} </h2>
             <p class="text-secondary"> {{user.email}} </p>
+            <a role="button" class="btn btn-danger" href="#"> Change </a>
 
       </div>
 
