@@ -36,7 +36,7 @@ class ChangeProfileForm(forms.ModelForm):
         }
 
 
-class ChangeUserstngsForm(forms.ModelForm):
+class ChangeUserStngsForm(forms.ModelForm):
 
     class Meta:
         model = User
