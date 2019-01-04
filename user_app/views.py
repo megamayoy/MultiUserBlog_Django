@@ -43,7 +43,7 @@ def change_user_profile(request):
 
             change_userprofile_form.save()
             change_userstngs_form.save()
-            redirect('profile')
+            return redirect('user_app:profile')
 
     else:
 
@@ -51,4 +51,5 @@ def change_user_profile(request):
         change_userstngs_form = ChangeUserStngsForm(instance = request.user)
 
 
-    render(request,"user_app/change_user_profile.html",context = { "change_userprofile_form" : change_userprofile_form , "change_userstngs_form" : change_userstngs_form })
+    return render(request,"user_app/change_user_profile.html",
+                  context = { "change_userprofile_form" : change_userprofile_form , "change_userstngs_form" : change_userstngs_form })

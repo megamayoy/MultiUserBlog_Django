@@ -1,4 +1,4 @@
-{% extends 'blogs/base.html' %}
+{% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 
 
@@ -8,9 +8,11 @@
 
         {% csrf_token %}
 
+         {{change_userstngs_form | crispy }}
+
          {{change_userprofile_form | crispy }}
 
-         {{change_userstngs_form | crispy }}
+
 
 
         <input type="submit" class="btn btn-success">
