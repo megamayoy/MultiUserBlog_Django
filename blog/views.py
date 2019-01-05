@@ -45,6 +45,7 @@ class PostDeleteView(DeleteView):
 
     model = Post
     success_url = reverse_lazy('blog:blog-home')
+    context_object_name = 'post'
 
 
 def about(request):
