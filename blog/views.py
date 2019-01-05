@@ -4,7 +4,7 @@ from blog.models import Post
 from django.views.generic import (ListView,DetailView,CreateView,
                                   UpdateView,DeleteView)
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 
 # Create your views here.
 
@@ -33,7 +33,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdatView(LoginRequiredMixin,UpdateView):
+class PostUpdatView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
     model = Post
     fields = ['title', 'content']
@@ -43,11 +43,20 @@ class PostUpdatView(LoginRequiredMixin,UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostDeleteView(LoginRequiredMixin,DeleteView):
+    def test_func(self):
+        post = self.get_object()
+        return (post.author == self.request.user)
+
+
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
     model = Post
     success_url = reverse_lazy('blog:blog-home')
     context_object_name = 'post'
+
+    def test_func(self):
+        post = self.get_object()
+        return (post.author == self.request.user)
 
 
 def about(request):
