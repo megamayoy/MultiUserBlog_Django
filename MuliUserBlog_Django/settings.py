@@ -135,3 +135,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #login redirect
 
 LOGIN_REDIRECT_URL = 'blog:blog-home'
+LOGIN_URL = 'user_app:login'

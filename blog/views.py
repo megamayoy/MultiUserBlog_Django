@@ -4,6 +4,8 @@ from blog.models import Post
 from django.views.generic import (ListView,DetailView,CreateView,
                                   UpdateView,DeleteView)
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
 
@@ -21,7 +23,7 @@ class PostDetailView(DetailView):
     model = Post
     context_object_name = 'post'
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin,CreateView):
 
     model = Post
     fields = ['title','content']
@@ -31,7 +33,7 @@ class PostCreateView(CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdatView(UpdateView):
+class PostUpdatView(LoginRequiredMixin,UpdateView):
 
     model = Post
     fields = ['title', 'content']
@@ -41,7 +43,7 @@ class PostUpdatView(UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin,DeleteView):
 
     model = Post
     success_url = reverse_lazy('blog:blog-home')
