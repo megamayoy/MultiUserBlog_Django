@@ -10,7 +10,8 @@
 
             <h2 class="account-heading"> {{ user.username  | title }} </h2>
             <p class="text-secondary"> {{user.email}} </p>
-            <a role="button" class="btn btn-danger" href="{% url 'user_app:changeinfo' %}"> Change </a>
+            <a role="button" class="btn btn-warning" href="{% url 'user_app:changeinfo' %}"> Change Personal Info </a>
+            <a role="button" class="btn btn-warning" href="{% url 'user_app:password_change' %}"> Change Password </a>
 
       </div>
 
