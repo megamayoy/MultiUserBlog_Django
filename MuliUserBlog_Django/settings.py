@@ -136,3 +136,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 LOGIN_REDIRECT_URL = 'blog:blog-home'
 LOGIN_URL = 'user_app:login'
+
+# SMTP configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+#write your email
+EMAIL_HOST_USER = ''
+
+# write the password of the email you provided
+EMAIL_HOST_PASSWORD = ''
+
