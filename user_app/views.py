@@ -3,6 +3,7 @@ from user_app.forms import RegistrationForm,ChangeProfileForm,ChangeUserStngsFor
 from django.contrib import messages
 import user_app.models as user_models
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def register_user(request):
@@ -29,8 +30,8 @@ def user_profile(request):
 
     return render(request,"user_app/user_profile.html")
 
-@login_required
 
+@login_required
 def change_user_profile(request):
 
 
@@ -52,4 +53,4 @@ def change_user_profile(request):
 
 
     return render(request,"user_app/change_user_profile.html",
-                  context = { "change_userprofile_form" : change_userprofile_form , "change_userstngs_form" : change_userstngs_form })
+                  context = { "change_userprofile_form" : change_userprofile_form , "change_userstngs_form" : change_userstngs_form})

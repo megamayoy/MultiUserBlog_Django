@@ -1,0 +1,43 @@
+{% extends 'blog/base.html'%}
+
+
+{% block content %}
+
+      <div class="media">
+
+      <img class="rounded-circle account-img" src ="{{ posts.first.author.userprofile.profile_pic.url }}" >
+
+      <div class="media-body">
+
+            <h2 class="account-heading"> {{ posts.first.author.username | title }} </h2>
+            <p class="text-secondary"> {{ posts.first.author.email }} </p>
+
+            {% if posts.first.author ==  user %}
+                <a role="button" class="btn btn-warning" href="{% url 'user_app:changeinfo' %}"> Change Personal Info </a>
+                <br>
+                <br>
+                <a role="button" class="btn btn-warning" href="{% url 'user_app:password_change' %}"> Change Password </a>
+            {% endif %}
+
+      </div>
+
+
+    {% if posts %}
+        {% for post in posts%}
+
+            <article class=" content-section">
+
+                <div class="article-metadata">
+                  <img class="rounded-circle article-img" src="{{ post.author.userprofile.profile_pic.url }}">
+                  <a class="mr-2" href="#">{{ post.author }}</a>
+                  <small class="text-muted">{{ post.date_posted }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url 'blog:post-detail' post.id %}">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+
+            </article>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

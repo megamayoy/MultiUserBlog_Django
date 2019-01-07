@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from blog.models import Post
+from django.contrib.auth.models import User
 from django.views.generic import (ListView,DetailView,CreateView,
                                   UpdateView,DeleteView)
 from django.urls import reverse_lazy
@@ -17,6 +18,18 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
+
+class UserPostsListView(ListView):
+
+    model = Post
+    context_object_name = 'posts'
+    template_name = "blog/user_profile.html"
+
+    def get_queryset(self):
+
+        user = get_object_or_404(User,username = self.kwargs.get('username'))
+        return Post.objects.filter(author = user)
+
 
 class PostDetailView(DetailView):
 
