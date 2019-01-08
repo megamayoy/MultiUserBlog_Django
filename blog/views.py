@@ -25,11 +25,13 @@ class UserPostsListView(ListView):
     context_object_name = 'posts'
     template_name = "blog/user_profile.html"
 
-    def get_queryset(self):
+    def get_context_data(self,**kwargs):
 
+        context = super().get_context_data(**kwargs)
         user = get_object_or_404(User,username = self.kwargs.get('username'))
-        return Post.objects.filter(author = user)
-
+        context['profile_owner'] = user
+        context['posts'] = Post.objects.filter(author = user)
+        return context
 
 class PostDetailView(DetailView):
 
