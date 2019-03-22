@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
 
-    path('post/', views.PostRUDAPIView.as_view(), name='post-rud'),
+    path('post/<int:pk>/', views.PostRUDAPIView.as_view(), name='post-rud'),
 
 ]
