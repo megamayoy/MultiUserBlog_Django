@@ -1,5 +1,5 @@
 # MuliUserBlog_Django
-a Django blog app based on Django tutorials by  <a href = 'https://www.youtube.com/user/schafer5'> Corey Shafer </a>
+a Django blog app with its CRUD API
 
 features used
 
