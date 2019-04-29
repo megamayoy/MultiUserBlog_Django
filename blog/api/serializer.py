@@ -12,7 +12,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
 
-    author = UserSerializer()
     class Meta:
         model = Post
         fields = ['id','title','content','author']
