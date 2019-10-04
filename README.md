@@ -1,5 +1,5 @@
 # MuliUserBlog_Django
-a Django blog app with its CRUD API
+a Django blog app with its CRUD API. python version = 3.7
 
 features used
 
