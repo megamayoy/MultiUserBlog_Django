@@ -10,14 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 # Create your views here.
 
 
-
-
 class PostListView(ListView):
 
     model = Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
+
 
 class UserPostsListView(ListView):
 
@@ -33,20 +32,23 @@ class UserPostsListView(ListView):
         context['posts'] = Post.objects.filter(author = user)
         return context
 
+
 class PostDetailView(DetailView):
 
     model = Post
     context_object_name = 'post'
 
+
 class PostCreateView(LoginRequiredMixin,CreateView):
 
     model = Post
-    fields = ['title','content']
+    fields = ['title', 'content']
     success_url = reverse_lazy('blog:blog-home')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 class PostUpdatView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
@@ -56,7 +58,7 @@ class PostUpdatView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
     def test_func(self):
         post = self.get_object()
-        return (post.author == self.request.user)
+        return post.author == self.request.user
 
 
 class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
@@ -67,7 +69,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        return (post.author == self.request.user)
+        return post.author == self.request.user
 
 
 def about(request):
